@@ -147,6 +147,7 @@ if($action=="submit"){
 	$db=null;
 	die;
 }else if($action=="flush"){
+	die;
 	$tmpl->set('title', 'Drive data flushed');
 	$tmpl->place('header_headless');
 
@@ -174,6 +175,7 @@ if($action=="submit"){
 	$db=null;
 	die;
 }elseif($action=="delete"){
+	die;
 	$tmpl->set('title', 'Drive Deleted');
 	$tmpl->place('header_headless');
 
