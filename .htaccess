@@ -1,0 +1,82 @@
+Options -Indexes -MultiViews
+Options +FollowSymlinks
+
+#################
+## php settings
+#################
+
+php_flag	register_globals	0
+php_flag	magic_quotes_gpc	0
+
+############
+## routing
+############
+
+RewriteEngine	On
+
+## the real rewrite rules
+RewriteRule		^favicon.ico												favicon.ico			[L]
+
+RewriteRule		^$															index.php			[L]
+RewriteRule		^home$														index.php			[L]
+RewriteRule		^rss$														index.php				[L]
+RewriteRule		^submit$														submit.php			[L]
+RewriteRule		^submit/do$														submit.php?action=submit			[L]
+RewriteRule		^submit_h$														submit_headless.php			[L]
+RewriteRule		^submit_h/do$														submit_headless.php?action=submit			[L]
+RewriteRule		^staging$														staging.php?type=html				[L]
+RewriteRule		^10mindata$														10mindata.php				[L]
+RewriteRule		^terms$														terms.php				[L]
+RewriteRule		^en$														index.php?lang=en			[L]
+RewriteRule		^jp$														index.php?lang=jp			[L]
+RewriteRule		^ja$														index.php?lang=jp			[L]
+RewriteRule		^de$														index.php?lang=de			[L]
+
+
+RewriteRule		^info$														info.php			[L]
+RewriteRule      ^glossary$                                                 glossary.php                    [L]
+RewriteRule      ^info$                                              info.php                        [L]
+RewriteRule      ^about-safecast/japan-team/						info.php                        [L]
+RewriteRule      ^about$                                             about.php                        [L]
+RewriteRule      ^ja/about-safecast/$								about.php?lang=jp                        [L]
+RewriteRule		^contact$													contact.php			[L]
+RewriteRule		^drive$													drive.php?id=2			[L]
+RewriteRule		^stats$													stats.php			[L]
+RewriteRule		^drive/([0-9]+)$												drive.php?id=$1		[L]
+RewriteRule		^feedmap$												feedMap.php		[L]
+RewriteRule		^aggregate-data/$												feedMap.php		[L]
+
+RewriteRule		^drive/add$													submitDrive_headless.php?action=add		[L]
+RewriteRule		^drive/submit$												submitDrive_headless.php?action=submit		[L]
+RewriteRule		^drive/manage$												submitDrive_headless.php?action=list		[L]
+RewriteRule		^drive/([0-9]+)/addData$										submitDrive_headless.php?action=addData&driveId=$1		[L]
+RewriteRule		^drive/([0-9]+)/edit$											submitDrive_headless.php?action=edit&driveId=$1		[L]
+RewriteRule		^drive/([0-9]+)/flush$										submitDrive_headless.php?action=flush&driveId=$1		[L]
+RewriteRule		^drive/([0-9]+)/delete$											submitDrive_headless.php?action=delete&driveId=$1		[L]
+RewriteRule		^drive/update$												submitDrive_headless.php?action=update		[L]
+
+RewriteRule     ^drives$                                drives.php             [L]
+RewriteRule		^list-of-drives$						drives.php [L]
+RewriteRule     ^list-of-drives/$                       drives.php [L]
+RewriteRule     ^ja/list-of-drives$                     drives.php?lang=jp [L]
+RewriteRule     ^ja/list-of-drives/$                    drives.php?lang=jp [L]
+RewriteRule     ^jp/list-of-drives/$                    drives.php?lang=jp [L]
+RewriteRule     ^blog/$                                 http://blog.safecast.org [L]
+RewriteRule     ^ja/blog/$                              http://blog.safecast.org/ja [L]
+RewriteRule 	^2011/(.*)$ 							http://blog.safecast.org/2011/$1 [L]
+RewriteRule 	^ja/2011/(.*)$ 							http://blog.safecast.org/ja/2011/$1 [L]
+
+RewriteRule		^#$										#	[L]
+
+
+# Prevent access to anything that didn't match so far and isn't in /sup/
+#RewriteCond		%{ENV:REDIRECT_STATUS}										^$ 
+#RewriteRule		^(?!script/|downloads/|style/|images/|feeds/|pachube/|temp/|kml/|robots\.txt).										views/404.php					[L]
+
+#########################
+## performance settings
+#########################
+
+## gzip plaintext being sent to the user
+AddOutputFilterByType	DEFLATE		text/html text/plain application/javascript application/x-javascript text/css
+
