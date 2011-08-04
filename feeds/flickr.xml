@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<feed xmlns="http://www.w3.org/2005/Atom"
+      xmlns:dc="http://purl.org/dc/elements/1.1/"
+      xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+      xmlns:georss="http://www.georss.org/georss">
+	
+  <title>The faulkner_usa Pool, with geodata</title>
+  <link rel="self" href="http://rdtn.org/feeds/flickr.xml" />
+  <link rel="alternate" type="text/html" href="http://www.flickr.com/photos/"/>
+  <id>tag:flickr.com,2005:/photos/public/group/322338@N20/geo/</id>
+  <icon>http://l.yimg.com/g/images/buddyicon.jpg#322338@N20</icon>
+  <subtitle>Pictures of my dog in a variety of locations</subtitle>
+  <updated>2006-08-29T15:42:35Z</updated>
+  <generator uri="http://www.flickr.com/">Flickr</generator>
+
+  <entry>
+    <title>Manhattan, NY</title>
+    <link rel="alternate" type="text/html" href="http://www.flickr.com/photos/shreck/228310988/"/>
+    <id>tag:flickr.com,2005:/photo/228310988</id>
+    <published>2006-08-29T15:42:35Z</published>
+    <updated>2006-08-29T15:42:35Z</updated>
+    <dc:date.Taken>2005-10-02T17:35:35-08:00</dc:date.Taken>
+    <content type="html">			&lt;p&gt;&lt;a href=&quot;http://www.flickr.com/people/shreck/&quot;&gt;manshreck&lt;/a&gt; posted a photo:&lt;/p&gt;
+	
+&lt;p&gt;&lt;a href=&quot;http://www.flickr.com/photos/shreck/228310988/&quot; title=&quot;Manhattan, NY&quot;&gt;&lt;img src=&quot;http://farm1.static.flickr.com/74/228310988_33a56d0108_m.jpg&quot; width=&quot;240&quot; height=&quot;179&quot; alt=&quot;Manhattan, NY&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Faulkner rests after the journey ends, Midtown Manhattan&lt;/p&gt;</content>
+    <author>
+      <name>manshreck</name>
+      <uri>http://www.flickr.com/people/shreck/</uri>
+      <flickr:nsid>51296622@N00</flickr:nsid>
+      <flickr:buddyicon>http://farm1.static.flickr.com/29/buddyicons/51296622@N00.jpg?1130103303#51296622@N00</flickr:buddyicon>
+    </author>
+    <link rel="enclosure" type="image/jpeg" href="http://farm1.static.flickr.com/74/228310988_33a56d0108_o.jpg" />
+    <georss:point>35.689488 139.691706</georss:point>
+    <geo:lat>35.689488</geo:lat>
+    <geo:long>139.691706</geo:long>
+    <woe:woeid>23511899</woe:woeid>
+  </entry>
+
+</feed>
