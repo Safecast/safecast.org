@@ -3,3 +3,5 @@
 inc/flourishDB.php
 
 inc/pdoDB.php
+feeds/driveCache/
+feeds/temp/
