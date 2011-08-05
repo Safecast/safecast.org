@@ -29,6 +29,8 @@ $tmpl->set('contact', $translations->contact);
 $tmpl->set('follow', $translations->follow);
 $tmpl->set('termsPolicy', $translations->termsPolicy);
 $tmpl->set('pageName', 'stats');
+$tmpl->set('lang', $lang);
+
 $tmpl->place('header');
 ?>
 

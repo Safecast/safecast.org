@@ -19,6 +19,7 @@ $tmpl->set('follow', $translations->follow);
 $tmpl->set('termsPolicy', $translations->termsPolicy);
 $tmpl->set('conceivedPart1', $translations->conceivedPart1);
 $tmpl->set('conceivedPart2', $translations->conceivedPart2);
+$tmpl->set('lang', $lang);
 
 $tmpl->set('pageName', 'drives');
 $action = fRequest::get('action',"string?" );

@@ -63,7 +63,7 @@
 					<a href="/home"><img src="images/logo.png" alt="Safecast" align="left" /></a><br/>
 				</div>
 				<div class="mainNav">
-					<div id="navBlogButton" class="mainNavButton <?php $pageName=$this->get('pageName'); if($pageName=="about")echo "navActive"; ?>"><a href="/about" title="<?php echo $this->get('aboutCaps') ?>"><?php echo $this->get('aboutCaps') ?></a></div>
+					<div id="navBlogButton" class="mainNavButton <?php $pageName=$this->get('pageName'); if($pageName=="about")echo "navActive"; ?>"><a href="<?php if($this->get('lang')=="jp")echo "ja/"?>about/" title="<?php echo $this->get('aboutCaps') ?>"><?php echo $this->get('aboutCaps') ?></a></div>
 					<div id="navBlogButton" class="mainNavButton <?php $pageName=$this->get('pageName'); if($pageName=="drives")echo "navActive"; ?>"><a href="/drives" title="<?php echo $this->get('maps') ?>"><?php echo $this->get('maps') ?></a></div>
 					<div id="navBlogButton" class="mainNavButton"><a href="http://blog.safecast.org" title="<?php echo $this->get('blog') ?>"><?php echo $this->get('blog') ?></a></div>
 					<div id="navBlogButton" class="mainNavButton"><a href="/wiki" title="<?php echo $this->get('wiki') ?>"><?php echo $this->get('wiki') ?></a></div>
@@ -73,6 +73,6 @@
 				    <div><?php echo $this->get('languageSelect'); ?></div>
 					<div id="navEnglish" class="mainNavButton langNavButton <?php $lang=$this->get('lang'); if($lang=="en")echo "active"; ?>"><a href="./en" title="English" >English</a></div>
 					<div id="navJapanese" class="mainNavButton langNavButton <?php $lang=$this->get('lang'); if($lang=="jp")echo "active"; ?>"><a href="./jp" title="日本語">日本語</a></div>
-					<div id="navEnglish" class="mainNavButton langNavButton <?php $lang=$this->get('lang'); if($lang=="de")echo "active"; ?>"><a href="./de" title="Deutsch" >Deutsch</a></div>
+					<!--<div id="navEnglish" class="mainNavButton langNavButton <?php $lang=$this->get('lang'); if($lang=="de")echo "active"; ?>"><a href="./de" title="Deutsch" >Deutsch</a></div>-->
 				</div>
 			</div>

@@ -13,6 +13,8 @@ $tmpl->set('follow', $translations->follow);
 $tmpl->set('termsPolicy', $translations->termsPolicy);
 $tmpl->set('title', 'Safecast Press');
 $tmpl->set('pageName', 'press');
+$tmpl->set('lang', $lang);
+
 $tmpl->place('header');
 ?>
 		<div class="content">

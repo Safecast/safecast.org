@@ -4,6 +4,8 @@ $tmpl->set('siteName', $translations->siteName);
 $tmpl->set('siteTagline', $translations->siteTagline);
 $tmpl->set('pageName', 'glossary');
 $tmpl->set('title', 'RDTN.ORG Glossary');
+$tmpl->set('lang', $lang);
+
 $tmpl->place('header');
 ?>
 		<div class="content">

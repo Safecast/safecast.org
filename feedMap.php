@@ -27,6 +27,8 @@ $tmpl->set('termsPolicy', $translations->termsPolicy);
 $tmpl->set('conceivedPart1', $translations->conceivedPart1);
 $tmpl->set('conceivedPart2', $translations->conceivedPart2);
 $tmpl->set('pageName', 'index');
+$tmpl->set('lang', $lang);
+
 $tmpl->place('header');
 ?>
 			<div class="content">

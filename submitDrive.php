@@ -17,6 +17,8 @@ $tmpl->set('termsPolicy', $translations->termsPolicy);
 $tmpl->set('conceivedPart1', $translations->conceivedPart1);
 $tmpl->set('conceivedPart2', $translations->conceivedPart2);
 $tmpl->set('pageName', 'submit');
+$tmpl->set('lang', $lang);
+
 $action = fRequest::get('action',"string?" );
 $driveId = fRequest::get('driveId',"integer" );
 

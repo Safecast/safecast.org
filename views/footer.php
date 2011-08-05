@@ -15,7 +15,7 @@
     					<span class="bold_caps">VOLUNTEER:</span> <a href="https://spreadsheets.google.com/spreadsheet/viewform?formkey=dGNfLUFXdi1lejF1TzU4NHdhZnRGWkE6MQ">Interested in helping?</a><br/>
     				</div>
 					<br/>					<br/>
-					<div class="terms"><a href="/terms"><?php echo $this->get('termsPolicy'); ?></a></div>
+					<div class="terms"><a href="<?php if($this->get('lang')=="jp")echo "ja/"?>/terms-conditions"><?php echo $this->get('termsPolicy'); ?></a></div>
 				</div> 
 			</div> 
 			<div class="footerColumnRight"> 

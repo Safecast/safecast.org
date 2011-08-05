@@ -21,6 +21,8 @@ $tmpl->set('pageName', 'about');
 $tmpl->add('css', '/style/info.css');
 $tmpl->add('css', '/style/about.css');
 $tmpl->set('title', 'About Safecast');
+$tmpl->set('lang', $lang);
+
 $tmpl->place('header');
 ?>
 		<div class="content">
