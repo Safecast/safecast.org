@@ -1393,6 +1393,11 @@ legend {
     min-height: 530px;
     width:705px;
 }
+#fusion_canvas{
+    height:530px;
+    min-height: 530px;
+    width:946px;
+}
 #small_map_canvas{
 	 height:320px;
     min-height: 320px;
@@ -1494,6 +1499,9 @@ legend {
 }
 .halfScreenWidth{
 	width:465px;
+}
+.fullScreenWidth{
+	width:946px;
 }
 
 .posColumn1{

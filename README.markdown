@@ -7,7 +7,7 @@ How to Start?
 * Ask Safecast for a copy of the database for you to run on your mysql server 
 * Add the following files to your build
  
-##/inc/fourishDB.php
+##/inc/flourishDB.php
 
 	<?php 
 	$db  = new fDatabase('mysql', 'DATABASE_NAME', 'DATABASE_USER', 'DATABASE_PASSWORD', 'localhost');
