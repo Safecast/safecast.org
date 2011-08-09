@@ -54,12 +54,22 @@ function create_geigermap(options_obj) {
         map_div = options_obj.div;
     }
     var map_div_obj = document.getElementById("grid_map_canvas");
+    var style = [{ featureType: 'all', elementType: 'all', stylers: [ { saturation: -69 } ]}];
+
+    var styledMapType = new google.maps.StyledMapType(style, { map: map, name: 'Styled Map' });
+    
+    
+    
     var map = new google.maps.Map(map_div_obj, {
         zoom: ((options_obj != undefined) ? ((options_obj.zoom != undefined) ? options_obj.zoom : 7) : 7),
         center: latlng,
+        mapTypeControl: false,
+        panControl: false,
+        streetViewControl: false,
         mapTypeId: google.maps.MapTypeId.TERRAIN
     });
-
+	map.mapTypes.set('map-style', styledMapType);
+    map.setMapTypeId('map-style');
     gm_map = map;
 
     var fukushima = new google.maps.LatLng(37.425525, 141.029434);
@@ -70,7 +80,7 @@ function create_geigermap(options_obj) {
         center: fukushima,
         radius: 20000,
         fillOpacity: 0,
-        strokeColor: '#ffffff',
+        strokeColor: '#999999',
         strokeOpacity: 0.8,
         strokeWeight: 3
     });
@@ -79,7 +89,7 @@ function create_geigermap(options_obj) {
         center: fukushima,
         radius: 30000,
         fillOpacity: 0,
-        strokeColor: '#ffffff',
+        strokeColor: '#999999',
         strokeOpacity: 0.5,
         strokeWeight: 3
     });
@@ -113,7 +123,31 @@ function gm_process_grid_json(oJson) {
         var topLeft = new google.maps.LatLng(parseFloat(curr_square.topLeft.lat), parseFloat(curr_square.topLeft.lng));
         var bottomRight = new google.maps.LatLng(curr_square.bottomRight.lat, curr_square.bottomRight.lng);
         var bounds = new google.maps.LatLngBounds(topLeft, bottomRight);
-        var color = (curr_square.contaminated_air == "1") ? "#000000" : ((curr_square.contaminated_air == "-1") ? "#ffffff":"#39f139");
+        var color = "#000000";  //black
+        if(curr_square.contaminated_air >= 3.0){
+        	color = "#000000";  //black
+          }else if(curr_square.contaminated_air >= 1.8){
+        	color = "#a00b10";  //dark red
+          }else if(curr_square.contaminated_air >= 1.2){
+        	color = "#ed1c24";  //red
+          }else if(curr_square.contaminated_air >= 1.0){
+          	color = "#c16e15";  //dark orange
+          }else if(curr_square.contaminated_air >= 0.8){
+          	color = "#f99d2f";  //orange
+          }else if(curr_square.contaminated_air >= 0.5){
+          	color = "#fff321";  //yellow
+          }else if(curr_square.contaminated_air >= 0.3){
+          	color = "#e4ea91";  //light green
+          }else if(curr_square.contaminated_air >= 0.2){
+          	color = "#9cc33b";  //green
+          }else if(curr_square.contaminated_air >= 0.1){
+          	color = "#74a241";  //mid green
+          }else {
+          	color = "#FFFFFF";  //white
+          }
+        
+        //var color = (curr_square.contaminated_air == "1") ? "#000000" : ((curr_square.contaminated_air == "-1") ? "#ffffff":"#39f139");
+        
         var opacity = (curr_square.contaminated_air == "1") ? 0.4 : 0.7;
         
         var rectOptions = {

@@ -47,6 +47,7 @@ RewriteRule		^drive$													drive.php?id=2			[L]
 RewriteRule		^stats$													stats.php			[L]
 RewriteRule		^drive/([0-9]+)$												drive.php?id=$1		[L]
 RewriteRule		^feedmap$												feedMap.php		[L]
+RewriteRule		^fusion$												fusionMap.php		[L]
 RewriteRule		^aggregate-data/$												feedMap.php		[L]
 
 RewriteRule		^drive/add$													submitDrive_headless.php?action=add		[L]

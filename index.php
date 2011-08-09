@@ -35,7 +35,7 @@ $tmpl->place('header');
 ?>
 			<div class="content">
 				<div class="relativeWrap">
-					<div class="twoColumnWidth posColumn1">
+					<div class="fullScreenWidth posColumn1 whiteBg">
 					  <div class="sectionHeadRight">Safecast Map</div> 
 						<div id="grid_map_canvas" class="map_canvas"></div>
 						<script> 
@@ -49,20 +49,27 @@ $tmpl->place('header');
 								view_by: "grid"
 							});
 							gm_load_feeds({
-								json: new Array("/feeds/grid7.json"),
+								json: new Array("/feeds/gridFusion.json"),
 							});
 							create_maps();
 						</script>					
- 
+ 						<div class="oneColumnWidth posColumn3">
+			    		<div id="steps" class="box">
+						<div class="sectionHeadRight">&nbsp;</div>
 						  <div class="leftHalfSizeBody" style=""> 
-						  	<p style="padding-top: 10px;"><img src="/images/gridmap_grey.png" class="pinImage" height="18" width="18"/> <?php echo $translations->gridMapLegend1; ?></p> 
-						      <p style="padding-top: 10px;"><img src="/images/gridmap_green.png" class="pinImage" height="18" width="18"/> <?php echo $translations->gridMapLegend2; ?></p> 
+						  	<!--<p style="padding-top: 10px;"><img src="/images/gridmap_grey.png" class="pinImage" height="18" width="18"/> <?php echo $translations->gridMapLegend1; ?></p> 
+						      <p style="padding-top: 10px;"><img src="/images/gridmap_green.png" class="pinImage" height="18" width="18"/> <?php echo $translations->gridMapLegend2; ?></p> -->
 							  <p><?php echo $translations->gridMapBody; ?> <a href="<?php echo $translations->driveListHref; ?>"><?php echo $translations->gridMapBodyLink; ?></a></p> 
+							  <p><br /><br /><div class="redButton"><a href="/fusion">Interact with full data set</a></div><br /></p>
+  						      <p><div class="redButton"><a href="<?php echo $translations->driveListHref; ?>">Individual drive maps</a></div></p>
+
 						      
 						  </div> 
+						  </div>
+						 </div>
 						  
 						  
-					
+					<!--
 					<div class="oneColumnWidth posColumn3">
     							<div id="steps" class="box">
     								<div class="sectionHeadRight"><?php echo $translations->safecastBlogPosts; ?></div>
@@ -76,7 +83,8 @@ $tmpl->place('header');
    						      		</div>
     							</div>
     							
-						</div>		  
+						</div>
+					-->		  
 				</div>
 				<div class="rowSpacer20"></div>
 				<div class="relativeWrap">
@@ -166,7 +174,7 @@ $tmpl->place('header');
 					
 						
 						<div class="relativeWrap">
-						
+							<!--
 							<div class="oneColumnWidth posColumn1">
 	    							<div class="box">
 									<script>
@@ -202,7 +210,10 @@ $tmpl->place('header');
 								</div>
 								
 	    							
-							</div>	
+							</div>
+							-->
+							
+							<!--	
 							<div class="oneColumnWidth posColumn2">
 								<div class="box">
 									<div style="padding-left:15px;"><br/>
@@ -211,6 +222,7 @@ $tmpl->place('header');
 												style="border:none; width:250px; height:80px"></iframe>
 									</div>
 								</div>
+							-->
 								<!--
 								<div class="box" id="creditRdtn">
 										<div class="sectionHeadRight"><?php echo $translations->creditAndThanks; ?></div>

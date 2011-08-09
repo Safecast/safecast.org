@@ -76,7 +76,7 @@
 	"aggregateButton": "Aggregate Map From All Sources",
 	"gridMapBody": "セーフキャストの総合地図は、今までセーフキャストチームが測定した２０万以上の値を一枚の地図に表しています。マップにある四角は、複数の測定を統合したものです。その詳細については、",
 	"gridMapBodyLink": "ドライブマップを参考にしてください。",
-	"driveListHref": "http://safecast.jp/ja/list-of-drives/",
+	"driveListHref": "/drives",
 	"gridMapLegend1": "このデータは、３月１１日前に計測された放射線量の平均値（３５ＣＰＭ）より高いです。",
 	"gridMapLegend2": "このデータは、３月１１日前に計測された放射線量の平均値（３５ＣＰＭ）と一致、あるいは低いです。",
     

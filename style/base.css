@@ -1388,6 +1388,9 @@ legend {
     display: none;
 }
 
+.whiteBg{
+	background-color: white;
+}
 #map_canvas{
     height:530px;
     min-height: 530px;
