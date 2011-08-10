@@ -2,6 +2,7 @@
 
 //inlcude db access
 include '../inc/pdoDB.php';
+include 'driveCacheTool.php';
 
 
 
@@ -161,7 +162,15 @@ function parseData($filename) {
 		*/
 	}
 	$db = null;
-	$output.='Successfully added '.$successful.' data points';
+	$output.='Successfully added '.$successful.' data points'." \n";
+	//generate static cache files
+	$wroteFiles = generateStaticFiles($driveId);
+	if($wroteFiles){
+		$output.="Created/Updated static cache files successfully";
+	}else{
+		$output.="failed to write static cache files";
+	}
+	
 	return $output;
 }  
 

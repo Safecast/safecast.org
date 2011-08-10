@@ -99,6 +99,7 @@ if($action=="submit"){
 	$db=null;
 	die;
 }else if($action=="update"){
+	include './feeds/driveCacheTool.php';
 	$tmpl->set('title', 'Drive Submitted');
 	$tmpl->place('header_headless');
 
@@ -132,6 +133,12 @@ if($action=="submit"){
 	    */
 	    
 	    echo "Drive updated. Would you like to <a href='/drive/".$driveId."/addData'>add data</a> to your drive?";
+	    $wroteFiles = generateStaticFiles($driveId);
+		if($wroteFiles){
+			echo "<p>Created/Updated static cache files successfully</p>";
+		}else{
+			echo "<p>failed to write static cache files</p>";
+		}
 	 
 	} catch (fExpectedException $e) {
 	    echo $e->printMessage();
@@ -228,6 +235,81 @@ if($action=="submit"){
 </div>';
 
 	die;
+}else if($action=="cache"){
+
+	$tmpl->set('title', 'Generating Drive Cache');
+	$tmpl->place('header_headless');
+
+	echo '<div class="content">
+				<div class="relativeWrap">
+					<div class="submitFormWrap">
+						<div class="sectionHeadForm">Generating Drive Cache <img id="spinner" src="/script/spinner/spinner.gif" alt ="" /></div><div id="submitFormBody" class="form">
+							<div id="uploadResult"><pre id="response"></pre></div>';
+	
+	//include './feeds/driveCacheTool.php';
+	$sql = "SELECT `drive_id` FROM drives";
+	$result = $db->query($sql);
+	$result->setFetchMode(PDO::FETCH_OBJ);	
+	echo '<script type="text/javascript">';
+	echo'
+		var drives = [';
+	$driveArrayString = "";
+	while ($data = $result->fetch()) {
+		$driveArrayString.=$data->drive_id.',';
+	}
+	$driveArrayString = rtrim($driveArrayString, ',');
+	echo $driveArrayString.'];';
+	
+	
+	echo '
+	function performDriveCache(driveId) {
+		var myData = "id="+driveId;
+		$.ajax(
+		{"url": "/feeds/driveCache.php",
+		"data": myData,
+		"type": "POST",
+		beforeSend: function(){
+	              $("#response").prepend("generating cache for drive: "+driveId+" \n");
+	        },
+		"success": function(data){
+	             var t=setTimeout("populateAllCache()",50);
+            },
+		"error": function(jqXHR, textStatus, errorThrown){
+	               $("#response").prepend("failed drive: "+driveId+" \n");
+	        }
+		});  
+	   
+	    return false;
+	            
+	}
+	
+	function populateAllCache(){
+		if(drives.length>0){
+			var which = drives.pop();
+			performDriveCache(which);
+		}else{
+	       $("#response").prepend("DONE ! \n");
+	       $("#spinner").hide();
+		}
+	}
+	
+	window.addEventListener?window.addEventListener("load",populateAllCache,false):window.attachEvent("onload",populateAllCache);
+	';
+	echo '
+</script>';
+	
+	
+
+
+	
+	
+	echo '</div>
+		</div>
+	</div>
+</div>';
+	$db=null;
+	
+	die;
 }else if($action=="list"){
 	//$tmpl->add('css',  'script/fileuploader/fileuploader.css');
 	//$tmpl->add('js',  'script/fileuploader/fileuploader.js');
@@ -265,7 +347,7 @@ function performDriveCache(driveId) {
 				<div class="relativeWrap">
 					<div class="crudWrap">
 						<div class="crudHeaderWrap">
-							<div class="crudHeader">Manage Drives (<a href="/drive/add">Add a new drive</a>)</div>
+							<div class="crudHeader">Manage Drives (<a href="/drive/add">Add a new drive</a>)</div><div style=" position: absolute; top: 3px; right: 10px;">(<a href="/drive/manage/cache">generate static caches for all</a>)</div> 
 						</div>
 						<div id="submitFormBody" class="form">
 	
@@ -274,7 +356,6 @@ function performDriveCache(driveId) {
 					<tr>
 						<th>Drive Description</th>
 						<th>Participants</th>
-						<th></th>
 						<th></th>
 						<th></th>
 						<th></th>
@@ -289,7 +370,7 @@ function performDriveCache(driveId) {
 		$odd = !$odd;
     	//echo '<td>'.$drive->getRouteDescription().'</td><td>'.$drive->getDrivers().'</td><td><a href="/drive/'.$drive->getDriveId().'/edit">Edit Drive</a></td><td><a href="/drive/'.$drive->getDriveId().'/addData">Add Data</a></td><td><a href="/drive/'.$drive->getDriveId().'/flush">Flush Data</a></td><td><a href="/drive/'.$drive->getDriveId().'/delete">Delete Drive</a></td><td><a href="/drive/'.$drive->getDriveId().'" target="_top">View</a></td><td><a id="generateLink'.$drive->getDriveId().'"  onclick="performDriveCache('.$drive->getDriveId().'); return false;" href="/feeds/driveCache.php?id='.$drive->getDriveId().'">Generate Static Files</a></td></tr>';
 		//echo '<td>'.$drive->getRouteDescription().'</td><td>'.$drive->getDrivers().'</td><td><a href="/drive/'.$drive->getDriveId().'/edit">Edit Drive</a></td><td><a href="/drive/'.$drive->getDriveId().'/addData">Add Data</a></td><td><a href="/drive/'.$drive->getDriveId().'/flush">Flush Data</a></td><td><a href="/drive/'.$drive->getDriveId().'/delete">Delete Drive</a></td><td><a href="/drive/'.$drive->getDriveId().'" target="_top">View</a></td><td><a id="generateLink'.$drive->getDriveId().'"  onclick="performDriveCache('.$drive->getDriveId().'); return false;" href="/feeds/driveCache.php?id='.$drive->getDriveId().'">Generate Static Files</a></td></tr>';
-		echo '<td>'.$drive->getRouteDescription().'</td><td>'.$drive->getDrivers().'</td><td><a href="/drive/'.$drive->getDriveId().'/edit">Edit Drive</a></td><td><a href="/drive/'.$drive->getDriveId().'/addData">Add Data</a></td><td><a href="/drive/'.$drive->getDriveId().'" target="_top">View</a></td><td><a id="generateLink'.$drive->getDriveId().'"  onclick="performDriveCache('.$drive->getDriveId().'); return false;" href="/feeds/driveCache.php?id='.$drive->getDriveId().'">Generate Static Files</a></td></tr>';
+		echo '<td>'.$drive->getRouteDescription().'</td><td>'.$drive->getDrivers().'</td><td><a href="/drive/'.$drive->getDriveId().'/edit">Edit Drive</a></td><td><a href="/drive/'.$drive->getDriveId().'/addData">Add Data</a></td><td><a href="/drive/'.$drive->getDriveId().'" target="_top">View</a></td></tr>';
 		
 	}
 	
