@@ -24,10 +24,6 @@
 		<?php echo $this->place('js', 'js') ?>
 		<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="excanvas.min.js"></script><![endif]-->
 		<script type="text/javascript">  
-		$(document).ready(function(){  	    
-			$('a[href^="http"]').attr('target', '_blank');
-
- 		});  
 		$("#address").keyup(function(event){
 		  if(event.keyCode == 13){
 		    $("#addressSubmit").click();
@@ -60,10 +56,10 @@
 		<div class="base">
 			<div class="header">
 				<div class="logo">
-					<a href="/home"><img src="images/logo.png" alt="Safecast" align="left" /></a><br/>
+					<a href="http://www.safecast.org/<?php if($this->get('lang')=="jp")echo "ja/"?>"><img src="images/logo.png" alt="Safecast" align="left" /></a><br/>
 				</div>
 				<div class="mainNav">
-					<div id="navBlogButton" class="mainNavButton <?php $pageName=$this->get('pageName'); if($pageName=="about")echo "navActive"; ?>"><a href="<?php if($this->get('lang')=="jp")echo "ja/"?>about/" title="<?php echo $this->get('aboutCaps') ?>"><?php echo $this->get('aboutCaps') ?></a></div>
+					<div id="navBlogButton" class="mainNavButton <?php $pageName=$this->get('pageName'); if($pageName=="about")echo "navActive"; ?>"><a href="http://blog.safecast.org/<?php if($this->get('lang')=="jp")echo "ja/"?>about/" title="<?php echo $this->get('aboutCaps') ?>"><?php echo $this->get('aboutCaps') ?></a></div>
 					<div id="navBlogButton" class="mainNavButton <?php $pageName=$this->get('pageName'); if($pageName=="drives")echo "navActive"; ?>"><a href="/drives" title="<?php echo $this->get('maps') ?>"><?php echo $this->get('maps') ?></a></div>
 					<div id="navBlogButton" class="mainNavButton"><a href="http://blog.safecast.org" title="<?php echo $this->get('blog') ?>"><?php echo $this->get('blog') ?></a></div>
 					<div id="navBlogButton" class="mainNavButton"><a href="/wiki" title="<?php echo $this->get('wiki') ?>"><?php echo $this->get('wiki') ?></a></div>
