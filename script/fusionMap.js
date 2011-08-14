@@ -29,6 +29,11 @@ function initialize_map()
 	var styledMapType = new google.maps.StyledMapType(style, { map: map, name: 'Styled Map' });
 	map.mapTypes.set('map-style', styledMapType);
 	map.setMapTypeId('map-style');
+
+	var NPS = new google.maps.LatLng(37.425252, 141.033247);
+	var area_30km = new google.maps.Circle( { map: map, center: NPS, fillColor: '#ff0000', fillOpacity: 0.2, strokeColor: '#ff0000', strokeOpacity: 0.8, strokeWeight: 1, radius: 30000 });
+	var area_20km = new google.maps.Circle( { map: map, center: NPS, fillColor: '#ff0000', fillOpacity: 0.3, strokeColor: '#ff0000', strokeOpacity: 0.8, strokeWeight: 1, radius: 20000 });
+
 	changeMap();
 }
 
