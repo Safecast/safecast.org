@@ -3,7 +3,6 @@ include './inc/init.php';
 $tmpl->add('js',  'http://maps.google.com/maps/api/js?sensor=false');
 $tmpl->add('js',  'script/fusionMap.js');
 $tmpl->add('js',  'script/LatLonGraticule.js');
-$tmpl->add('css', 'http://code.google.com/apis/maps/documentation/javascript/examples/default.css');
 $tmpl->set('title', 'Safecast');
 $tmpl->set('siteName', $translations->siteName);
 $tmpl->set('siteTagline', $translations->siteTagline);
