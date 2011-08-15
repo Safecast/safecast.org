@@ -49,7 +49,7 @@ $tmpl->place('header');
 								view_by: "grid"
 							});
 							gm_load_feeds({
-								json: new Array("/feeds/gridFusionSmall.json"),
+								json: new Array("/feeds/gridFusion.json"),
 							});
 							create_maps();
 						</script>					
