@@ -7,15 +7,15 @@
 		<div class="footerInside">
 			<div class="footerColumnLeft"> 
 				<div class="footerHeader footerHeaderText"><?php echo $this->get('contact'); ?></div> 
-				<div class="footerText"><a href="http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=334+NW+11th+Avenue+Portland,+Oregon+97209&sll=45.420998,-122.734251&sspn=0.009609,0.0212&ie=UTF8&hq=&hnear=334+NW+11th+Ave,+Portland,+Multnomah,+Oregon+97209&t=h&z=16">334 NW 11th Avenue, Suite 200   /   Portland, Oregon 97209<img class="arrow" src="/images/arrow.png" alt="Map" /></a><br /> 
-    				<div class="footerTextLinks">
+				<div class="footerText">
+				    				<div class="footerTextLinks">
     					<span class="bold_caps">GENERAL:</span> <a href="mailto:info@safecast.org">info@safecast.org</a><br/>
     					<span class="bold_caps">JAPAN:</span> <a href="mailto:japan@safecast.org">japan@safecast.org</a><br/>
     					<span class="bold_caps">PRESS:</span> <a href="mailto:sean@safecast.org">press@safecast.org</a><br/>
     					<span class="bold_caps">VOLUNTEER:</span> <a href="https://spreadsheets.google.com/spreadsheet/viewform?formkey=dGNfLUFXdi1lejF1TzU4NHdhZnRGWkE6MQ">Interested in helping?</a><br/>
     				</div>
 					<br/>					<br/>
-					<div class="terms"><a href="<?php if($this->get('lang')=="jp")echo "ja/"?>/terms-conditions"><?php echo $this->get('termsPolicy'); ?></a></div>
+					<div class="terms"><a href="http://blog.safecast.org/terms-conditions">Terms and Conditions</a></div>
 				</div> 
 			</div> 
 			<div class="footerColumnRight"> 
