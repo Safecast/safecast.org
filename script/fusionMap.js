@@ -34,10 +34,10 @@ function initialize_map()
 	var area_30km = new google.maps.Circle( { map: map, center: NPS, fillColor: '#ff0000', fillOpacity: 0.2, strokeColor: '#ff0000', strokeOpacity: 0.8, strokeWeight: 1, radius: 30000 });
 	var area_20km = new google.maps.Circle( { map: map, center: NPS, fillColor: '#ff0000', fillOpacity: 0.3, strokeColor: '#ff0000', strokeOpacity: 0.8, strokeWeight: 1, radius: 20000 });
 
-	changeMap();
+	change_map();
 }
 
-function changeMap()
+function change_map()
 {
 	update_info(null);	// grey-out the div initially
 	zoom = map.getZoom();	// update current zoom
@@ -68,7 +68,7 @@ function changeMap()
 	fusion_layer = new google.maps.FusionTablesLayer({ query: {select: 'lat_lon', from: table, where: ""} });
 	fusion_layer.setOptions({ suppressInfoWindows : true});
 	fusion_listener = google.maps.event.addListener(fusion_layer, 'click', function(e) { update_info(e);});
-	google.maps.event.addListener(map, 'zoom_changed', function() { if (zoom != map.getZoom()) { changeMap(); }; });
+	google.maps.event.addListener(map, 'zoom_changed', function() { if (zoom != map.getZoom()) { change_map(); }; });
 
 	fusion_layer.setMap(map);
 }
