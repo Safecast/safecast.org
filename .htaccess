@@ -15,25 +15,24 @@ php_flag	magic_quotes_gpc	0
 RewriteEngine	On
 
 ## the real rewrite rules
-RewriteRule		^favicon.ico			favicon.ico				[L]
+RewriteRule	^favicon.ico			favicon.ico				[L]
 
-RewriteRule		^$				index.php				[L]
-RewriteRule		^home$				index.php				[L]
-RewriteRule		^rss$				index.php				[L]
-RewriteRule		^submit$			submit.php				[L]
-RewriteRule		^submit/do$			submit.php?action=submit		[L]
-RewriteRule		^submit_h$			submit_headless.php			[L]
-RewriteRule		^submit_h/do$			submit_headless.php?action=submit	[L]
-RewriteRule		^staging$			staging.php?type=html			[L]
-RewriteRule		^10mindata$			10mindata.php				[L]
-RewriteRule		^terms-conditions(.*)$		http://blog.safecast.org/terms-conditions/	[L]
-RewriteRule		^ja/terms-conditions(.*)$	http://blog.safecast.org/ja/terms-conditions/	[L]
+RewriteRule	^$				index.php				[L]
+RewriteRule	^home$				index.php				[L]
+RewriteRule	^rss$				index.php				[L]
+RewriteRule	^submit$			submit.php				[L]
+RewriteRule	^submit/do$			submit.php?action=submit		[L]
+RewriteRule	^submit_h$			submit_headless.php			[L]
+RewriteRule	^submit_h/do$			submit_headless.php?action=submit	[L]
+RewriteRule	^staging$			staging.php?type=html			[L]
+RewriteRule	^10mindata$			10mindata.php				[L]
+RewriteRule	^terms-conditions(.*)$		http://blog.safecast.org/terms-conditions/	[L]
+RewriteRule	^ja/terms-conditions(.*)$	http://blog.safecast.org/ja/terms-conditions/	[L]
 
-RewriteRule		^en$	index.php?lang=en	[L]
-RewriteRule		^jp$	index.php?lang=jp	[L]
-RewriteRule		^ja$	index.php?lang=jp	[L]
-RewriteRule		^de$	index.php?lang=de	[L]
-
+RewriteRule	^en$	index.php?lang=en	[L]
+RewriteRule	^jp$	index.php?lang=jp	[L]
+RewriteRule	^ja$	index.php?lang=jp	[L]
+RewriteRule	^de$	index.php?lang=de	[L]
 
 RewriteRule	^info$				info.php			[L]
 RewriteRule	^glossary$			glossary.php			[L]
@@ -84,4 +83,3 @@ RewriteRule	^#$				#	[L]
 
 ## gzip plaintext being sent to the user
 AddOutputFilterByType	DEFLATE		text/html text/plain application/javascript application/x-javascript text/css
-
