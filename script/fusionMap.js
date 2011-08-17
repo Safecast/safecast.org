@@ -5,6 +5,7 @@ var fusion_layer	= null;
 var fusion_listener	= null;
 var tables		= new Array("1290203", "1289664", "1289840");
 var table		= "1290203";
+var geocoder		= null;
 
 $(document).ready(function()
 {
@@ -25,6 +26,7 @@ function initialize_map()
 			scaleControlOptions: { position: google.maps.ControlPosition.TOP_CENTER },
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		});
+	geocoder = new google.maps.Geocoder();
 	var style = [{ featureType: 'all', elementType: 'all', stylers: [ { saturation: -69 } ]}];
 	var styledMapType = new google.maps.StyledMapType(style, { map: map, name: 'Styled Map' });
 	map.mapTypes.set('map-style', styledMapType);
@@ -34,10 +36,10 @@ function initialize_map()
 	var area_30km = new google.maps.Circle( { map: map, center: NPS, fillColor: '#ff0000', fillOpacity: 0.2, strokeColor: '#ff0000', strokeOpacity: 0.8, strokeWeight: 1, radius: 30000 });
 	var area_20km = new google.maps.Circle( { map: map, center: NPS, fillColor: '#ff0000', fillOpacity: 0.3, strokeColor: '#ff0000', strokeOpacity: 0.8, strokeWeight: 1, radius: 20000 });
 
-	changeMap();
+	change_map();
 }
 
-function changeMap()
+function change_map()
 {
 	update_info(null);	// grey-out the div initially
 	zoom = map.getZoom();	// update current zoom
@@ -68,13 +70,14 @@ function changeMap()
 	fusion_layer = new google.maps.FusionTablesLayer({ query: {select: 'lat_lon', from: table, where: ""} });
 	fusion_layer.setOptions({ suppressInfoWindows : true});
 	fusion_listener = google.maps.event.addListener(fusion_layer, 'click', function(e) { update_info(e);});
-	google.maps.event.addListener(map, 'zoom_changed', function() { if (zoom != map.getZoom()) { changeMap(); }; });
+	google.maps.event.addListener(map, 'zoom_changed', function() { if (zoom != map.getZoom()) { change_map(); }; });
 
 	fusion_layer.setMap(map);
 }
 
 function update_info(e)
 {
+	document.getElementById("addr").value = "Go to...";
 	var info_div = document.getElementById('info');
 	if (e)
 	{
@@ -108,4 +111,21 @@ function go_back()
 	var coord = new google.maps.LatLng(ll[0], ll[1]);
 	map.setCenter(coord);
 	return true;
+}
+
+function center_map()
+{
+	var addr = document.getElementById("addr").value;
+	geocoder.geocode( {'address': addr, 'region': "jp"}, function (results, status)
+		{
+			if (status == google.maps.GeocoderStatus.OK)
+			{
+				//var marker = new google.maps.Marker( { map: map, position: results[0].geometry.location } );
+				//map.setCenter(results[0].geometry.location);
+				//map.setZoom(10);
+				map.fitBounds(results[0].geometry.viewport);
+			 }
+			else
+				{ alert ("Cannot find " + addr + "! Status: " + status); }
+		});
 }
