@@ -7,7 +7,7 @@
 		<div class="footerInside">
 			<div class="footerColumnLeft"> 
 				<div class="footerHeader footerHeaderText"><?php echo $this->get('contact'); ?></div> 
-				<div class="footerText">
+				<div class="footerText"><br />
 				    				<div class="footerTextLinks">
     					<span class="bold_caps">GENERAL:</span> <a href="mailto:info@safecast.org">info@safecast.org</a><br/>
     					<span class="bold_caps">JAPAN:</span> <a href="mailto:japan@safecast.org">japan@safecast.org</a><br/>
