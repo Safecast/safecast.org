@@ -77,6 +77,7 @@ function change_map()
 
 function update_info(e)
 {
+	document.getElementById("addr").value = "Go to...";
 	var info_div = document.getElementById('info');
 	if (e)
 	{
