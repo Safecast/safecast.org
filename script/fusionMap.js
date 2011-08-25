@@ -1,3 +1,8 @@
+//
+// fusionMap.js
+// Originally coded 2011-07 by Kalin KOZHUHAROV <kalin@thinrope.net> for http://thinrope.net/
+//
+
 var map			= null;
 var zoom_level		= 7;
 var layer_count		= 1;
@@ -43,7 +48,8 @@ function change_map()
 {
 	update_info(null);	// grey-out the div initially
 	zoom = map.getZoom();	// update current zoom
-	document.getElementById('info').innerHTML = "<b>zoom: " + zoom + "</b>";
+	document.getElementById('info').innerHTML = '<p style="text-align: center;"><b>zoom: ' + zoom +
+		'</b><br /><br />Please click on any marker to see its reading.</p>';
 	
 	if (fusion_layer)
 	{
