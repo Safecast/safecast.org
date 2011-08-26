@@ -1,3 +1,9 @@
+$(document).ready(function()
+{
+	initialize_map();
+});
+
+
 //
 // fusionMap.js
 // Originally coded 2011-07 by Kalin KOZHUHAROV <kalin@thinrope.net> for http://thinrope.net/
@@ -11,12 +17,6 @@ var fusion_listener	= null;
 var tables		= new Array("1290203", "1289664", "1289840");
 var table		= "1290203";
 var geocoder		= null;
-
-$(document).ready(function()
-{
-	initialize_map();
-});
-
 
 function initialize_map()
 {
