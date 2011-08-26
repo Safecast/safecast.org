@@ -67,11 +67,11 @@ function change_map()
 	{
 		table = tables[0];
 	}
-	else if ((zoom >= 6) && (zoom <= 9))
+	else if (zoom <= 9)
 	{
 		table = tables[1];
 	}
-	else if ((zoom >= 9) && (zoom <= 12))
+	else if (zoom <= 12)
 	{
 		table = tables[2];
 	}
