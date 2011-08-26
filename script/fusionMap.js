@@ -14,9 +14,12 @@ var zoom_level		= 7;
 var layer_count		= 1;
 var fusion_layer	= null;
 var fusion_listener	= null;
-var tables		= new Array("1290203", "1289664", "1289840");
-var table		= "1290203";
+var tables_A		= new Array("1355535", "1355910", "1355515", "1355439");
+var tables_B		= new Array("1290203", "1290203", "1289664", "1289840");
+var tables		= tables_A;
+var table		= tables[0];
 var geocoder		= null;
+var params		= {h: '100%', w: '100%'};
 
 function initialize_map()
 {
@@ -41,6 +44,10 @@ function initialize_map()
 	var area_30km = new google.maps.Circle( { map: map, center: NPS, fillColor: '#ff0000', fillOpacity: 0.2, strokeColor: '#ff0000', strokeOpacity: 0.8, strokeWeight: 1, radius: 30000 });
 	var area_20km = new google.maps.Circle( { map: map, center: NPS, fillColor: '#ff0000', fillOpacity: 0.3, strokeColor: '#ff0000', strokeOpacity: 0.8, strokeWeight: 1, radius: 20000 });
 
+	window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) { params[key] = value; });
+	document.getElementById('safecast_map').style.height = params['h'];
+	document.getElementById('safecast_map').style.width = params['w'];
+
 	change_map();
 }
 
@@ -56,17 +63,21 @@ function change_map()
 		fusion_layer.setMap(null);
 		fusion_layer = null;
 	}
-	if (zoom < 9)
+	if (zoom < 6)
 	{
 		table = tables[0];
 	}
-	else if ((zoom >= 9) && (zoom <= 12))
+	else if ((zoom >= 6) && (zoom <= 9))
 	{
 		table = tables[1];
 	}
-	else if (zoom > 12)
+	else if ((zoom >= 9) && (zoom <= 12))
 	{
 		table = tables[2];
+	}
+	else if (zoom > 12)
+	{
+		table = tables[3];
 	}
 	else
 	{
