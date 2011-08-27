@@ -226,20 +226,23 @@ a, a:hover, a:visited{
 *+html .clearfix{zoom:1;display:block}
 
 .logo {
-	margin-top: -14px;
+	margin-top: -15px;
+	margin-right: 225px;
+	float:left;
+
 }
 .logo h1 {
 	padding-bottom: 5px;
 }
 .mainNav {
-    height:33px;
+    height:10px;
 	margin-top: 5px;
 	width: 800px;
 }
 .mainNav .mainNavButton {
-	padding-left: 25px;
+	padding-left: 0px;
     margin-right: 5px;
-    margin-top: 71px;
+    margin-top: 5px;
     float:left;
     height:33px;
     line-height: 18pt;
@@ -284,7 +287,7 @@ a, a:hover, a:visited{
 }
 .languageNav {
     position: relative;
-    top: -35px;
+    top: -55px;
     text-align: right;
     width: 146px;
     float: right;

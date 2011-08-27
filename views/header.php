@@ -10,8 +10,8 @@
 		<meta property="og:image" content="http://www.safecast.org/images/logo.png" />
 		<meta property="og:site_name" content="Safecast" />
 		<meta property="fb:admins" content="595809984" />
-		<meta name="description" content="Safecast is a website that aggregates radioactivity data from throughout the world in order to provide real-time hyper-local information about the status of the Japanese nuclear crisis."> 
-		<meta name="keywords" content="japan,fukushima,radiation,nuclear,reactor,geiger,counter,RDTN,Safecast">
+		<meta name="description" content="Safecast is a global project working to empower people with data, primarily by building a sensor network and enabling people to both contribute and freely use the data we collect."> 
+		<meta name="keywords" content="japan,fukushima,radiation,nuclear,reactor,geiger counter,Safecast">
 		<title><?php echo $this->prepare('title') ?><?php echo (strpos($this->get('title'), 'Safecast') === FALSE ? ' - Safecast' : '') ?></title>
 		
 		<base href="<?php echo fURL::getDomain() . URL_ROOT ?>" />
@@ -56,14 +56,14 @@
 		<div class="base">
 			<div class="header">
 				<div class="logo">
-					<a href="http://www.safecast.org/<?php if($this->get('lang')=="jp")echo "ja/"?>"><img src="images/logo.png" alt="Safecast" align="left" /></a><br/>
+					<a href="http://www.safecast.org/<?php if($this->get('lang')=="jp")echo "ja/"?>"><img src="http://blog.safecast.org/wp-content/uploads/2011/08/scjp-head.png" alt="Safecast" align="left" /></a><br/>
 				</div>
 				<div class="mainNav">
 					<div id="navBlogButton" class="mainNavButton <?php $pageName=$this->get('pageName'); if($pageName=="about")echo "navActive"; ?>"><a href="http://blog.safecast.org/<?php if($this->get('lang')=="jp")echo "ja/"?>about/" title="<?php echo $this->get('aboutCaps') ?>"><?php echo $this->get('aboutCaps') ?></a></div>
 					<div id="navBlogButton" class="mainNavButton <?php $pageName=$this->get('pageName'); if($pageName=="drives")echo "navActive"; ?>"><a href="/drives" title="<?php echo $this->get('maps') ?>"><?php echo $this->get('maps') ?></a></div>
 					<div id="navBlogButton" class="mainNavButton"><a href="http://blog.safecast.org" title="<?php echo $this->get('blog') ?>"><?php echo $this->get('blog') ?></a></div>
 					<div id="navBlogButton" class="mainNavButton"><a href="/wiki" title="<?php echo $this->get('wiki') ?>"><?php echo $this->get('wiki') ?></a></div>
-					<div id="navSubmitButton" class="mainNavButton <?php $pageName=$this->get('pageName'); if($pageName=="submit")echo "navActive"; ?>" style="width:116px;"><a href="/submit<?php $lang=$this->get('lang'); if($lang=="jp")echo "?lang=jp"; ?>" title="<?php echo $this->get('submitAReading') ?>"><?php echo $this->get('submitAReading') ?></a></div>
+					<!-- <div id="navSubmitButton" class="mainNavButton <?php $pageName=$this->get('pageName'); if($pageName=="submit")echo "navActive"; ?>" style="width:116px;"><a href="/submit<?php $lang=$this->get('lang'); if($lang=="jp")echo "?lang=jp"; ?>" title="<?php echo $this->get('submitAReading') ?>"><?php echo $this->get('submitAReading') ?></a></div> -->
 				</div>
 				<div class="languageNav">
 				    <div><?php echo $this->get('languageSelect'); ?></div>
