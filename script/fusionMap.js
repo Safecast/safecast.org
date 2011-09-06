@@ -15,8 +15,8 @@ var layer_count		= 1;
 var fusion_layer	= null;
 var fusion_listener	= null;
 var tables_A		= new Array("1355535", "1355910", "1355515", "1355439");
-var tables_B		= new Array("1290203", "1290203", "1289664", "1289840");
-var tables		= tables_A;
+var tables_B		= new Array("1403955", "1403954", "1403953", "1403581");
+var tables		= tables_B;
 var table		= tables[0];
 var geocoder		= null;
 var params		= {h: '100%', w: '100%'};
@@ -87,7 +87,7 @@ function change_map()
 	fusion_layer = new google.maps.FusionTablesLayer({ query: {select: 'lat_lon', from: table, where: ""} });
 	fusion_layer.setOptions({ suppressInfoWindows : true});
 	fusion_listener = google.maps.event.addListener(fusion_layer, 'click', function(e) { update_info(e);});
-	google.maps.event.addListener(map, 'zoom_changed', function() { if (zoom != map.getZoom()) { change_map(); }; });
+	google.maps.event.addListenerOnce(map, 'zoom_changed', function() { if (zoom != map.getZoom()) { change_map(); }; });
 
 	fusion_layer.setMap(map);
 }
@@ -103,13 +103,13 @@ function update_info(e)
 		var DRE = parseFloat(e.row.DRE.value);
 		if (DRE <= 0.2) 
 			{document.getElementById("info_under").style.backgroundColor='#99ff99';}
-		else if (DRE >0.2 && DRE <= 0.5)
+		else if (DRE <= 0.5)
 			{document.getElementById("info_under").style.backgroundColor='#ffff99';}
-		else if (DRE >0.5 && DRE <= 1.0)
+		else if (DRE <= 1.0)
 			{document.getElementById("info_under").style.backgroundColor='#ff99ff';}
-		else if (DRE >1.0 && DRE <= 5.0)
+		else if (DRE <= 5.0)
 			{document.getElementById("info_under").style.backgroundColor='#9999ff';}
-		else if (DRE >5.0 && DRE <= 10.0)
+		else if (DRE <= 10.0)
 			{document.getElementById("info_under").style.backgroundColor='#ff6666';}
 		else
 			{document.getElementById("info_under").style.backgroundColor='red';}
@@ -133,7 +133,12 @@ function go_back()
 function center_map()
 {
 	var addr = document.getElementById("addr").value;
-	geocoder.geocode( {'address': addr, 'region': "jp"}, function (results, status)
+	go_to(addr);
+}
+
+function go_to(place)
+{
+	geocoder.geocode( {'address': place, 'region': "jp"}, function (results, status)
 		{
 			if (status == google.maps.GeocoderStatus.OK)
 			{
