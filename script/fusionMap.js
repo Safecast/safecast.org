@@ -17,6 +17,7 @@ var fusion_listener	= null;
 var tables_A		= new Array("1355535", "1355910", "1355515", "1355439");
 var tables_B		= new Array("1403955", "1403954", "1403953", "1403581");
 var tables		= tables_B;
+var tables_updated	= "2011-08-04";
 var table		= tables[0];
 var geocoder		= null;
 var params		= {h: '100%', w: '100%'};
@@ -55,8 +56,10 @@ function change_map()
 {
 	update_info(null);	// grey-out the div initially
 	zoom = map.getZoom();	// update current zoom
-	document.getElementById('info').innerHTML = '<p style="text-align: center;"><b>zoom: ' + zoom +
-		'</b><br /><br />Please click on any marker to see its reading.</p>';
+	document.getElementById('info').innerHTML = '<p style="text-align: center;">' +
+		'<b>zoom: ' + zoom + '</b><br />' +
+		'Dataset last updated: <b>' + tables_updated + '</b><br />' +
+		'<br />Please click on any marker to see its reading.</p>';
 	
 	if (fusion_layer)
 	{
