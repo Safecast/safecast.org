@@ -6,6 +6,8 @@ try{
 	$zoom = $_REQUEST["zoom"];
 	$description = $_REQUEST["route_description"]; 
 	$drivers = $_REQUEST["drivers"]; 
+	$date = $_REQUEST["drive_date"];
+	$locations = $_REQUEST["locations"];
 }catch(PDOException $e){
 	echo "failed to get POST vars";
 }
@@ -38,6 +40,8 @@ $existingLongitude = "";
 $existingDescription = "";
 $existingDrivers = "";
 $existingZoom = "13";
+$existingDriveDate = date("Y-m-d");
+$existingLocations = ""; 
 
 if($action=="submit"){
 	$tmpl->set('title', 'Drive Submitted');
@@ -65,9 +69,9 @@ if($action=="submit"){
 	   
 		
 		//prepare the db insert statements for re-use:
-		$sql = "INSERT INTO drives (route_description, drivers, latitude, longitude, zoom) values (?, ?, ?, ?, ?)"; 
+		$sql = "INSERT INTO drives (route_description, drivers, latitude, longitude, zoom, drive_date, locations) values (?, ?, ?, ?, ?, ?, ?)"; 
 		$submitInsert = $db->prepare($sql);
-		$drive = array($description, $drivers, $lat, $lon, $zoom);
+		$drive = array($description, $drivers, $lat, $lon, $zoom, $date, $locations);
 		$submitInsert->execute($drive);
 		$driveId = $db->lastInsertId();
 		
@@ -115,9 +119,9 @@ if($action=="submit"){
 		
 				
 		//prepare the db insert statements for re-use:
-		$sql = "UPDATE  `drives` SET  `route_description` =  ?, `drivers` = ?, `latitude` = ?, `longitude` = ?, `zoom` = ? WHERE `drive_id` = ?";
+		$sql = "UPDATE  `drives` SET  `route_description` =  ?, `drivers` = ?, `latitude` = ?, `longitude` = ?, `zoom` = ?, `drive_date` = ?, `locations` = ? WHERE `drive_id` = ?";
 		$updateInsert = $db->prepare($sql);
-		$drive = array($description, $drivers, $lat, $lon, $zoom, $driveId);
+		$drive = array($description, $drivers, $lat, $lon, $zoom, $date, $locations, $driveId );
 		$updateInsert->execute($drive);
 
 		
@@ -396,7 +400,8 @@ function performDriveCache(driveId) {
 	$existingDescription = $drive->getRouteDescription();
 	$existingDrivers = $drive->getDrivers();
 	$existingZoom = $drive->getZoom();
-	
+	$existingDriveDate = date("Y-m-d", strtotime($drive->getDriveDate()));
+	$existingLocations = $drive->getLocations();	
 }else{
 	$tmpl->set('title', 'Add New Drive');
 	$tmpl->add('js',  'script/jquery.geolocation.js');
@@ -483,12 +488,20 @@ $tmpl->place('header_headless');
 										<input type="text" name="route_description" value="<?php echo $existingDescription ?>" id="drives-route_description" class="input_xxlarge require" />
 									</div>
 									<div class="formRow">
+										<label for="drives-locations">Locations</label><br />
+										<input type="text" name="locations" value="<?php echo $existingLocations; ?>" id="drives-locations" class="input_xxlarge require" />
+									</div>
+									<div class="formRow">
 										<label for="drives-drivers">Drivers</label><br />
 										<input type="text" name="drivers" value="<?php echo $existingDrivers ?>" id="drives-drivers" class="input_xxlarge require" />
 									</div>
-									<div class="formRow">
+								<div class="formRow">
 										<label for="drives-zoom">Map Zoom level (default is 13)</label><br />
 										<input type="text" name="zoom" value="<?php echo $existingZoom ?>" id="drives-zoom" class="input_xxlarge require" />
+									</div>
+									<div class="formRow">
+										<label for="pickerDay"><?php echo $translations->whatDay; ?></label><br />
+										<input type="text" name="drive_date" value="<?php echo $existingDriveDate ?>" id="pickerDay" class="input_medium" />
 									</div>
 								</fieldset>
 								<div class="formRowSubmit"><br />
@@ -507,6 +520,7 @@ if($action=="edit"){
 	echo '<script type="text/javascript">
 			$("#lnglat").locationPicker();
 			$("#lnglat").trigger("forceUpdate");    
+			$("#pickerDay").AnyTime_picker({format: "%Y-%m-%d", monthAbbreviations:["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]});
 	</script>';
 }
 	
