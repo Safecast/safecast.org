@@ -1684,9 +1684,11 @@ hr.dotted {
 }
 .crudOddRow{
         background-color: #d7d7d7;
+	cursor: pointer;
 }
 
 .crudEvenRow{
+	cursor: pointer;
         background-color: #c7c7c7;
 }
 
@@ -1708,4 +1710,40 @@ hr.dotted {
 }
 .crudWrap a:hover{
     text-decoration: underline;
+}
+
+.crudWrap .description {
+	color: #444;
+}
+
+.crudWrap .drivers {
+    color: #515151;
+    font-size: 9pt;
+}
+
+.crudWrap h3 {
+    font: bold 100%/100% Arial, sans-serif;
+    color: #444;
+    font-size: 10pt;
+}
+
+.crudWrap td.dateColumn {
+    width: 100px;
+}
+
+.crudWrap td.driveColumn {
+    border-left-width: 0px;
+    border-right-width: 0px;
+    padding: 16px 10px;
+    border-color: #F2F2F2;
+}
+
+
+
+.crudWrap td.idColumn {
+    font-size: 8pt;
+}
+
+.driveWrap {
+	background-color: #F2F2F2;
 }

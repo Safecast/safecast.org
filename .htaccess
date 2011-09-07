@@ -1,6 +1,9 @@
 Options -Indexes -MultiViews
 Options +FollowSymlinks
-
+AuthName "Development Area. Please visit www.safecast.org instead"
+AuthType Basic
+AuthUserFile /var/www/.htpasswd
+require valid-user
 #################
 ## php settings
 #################
