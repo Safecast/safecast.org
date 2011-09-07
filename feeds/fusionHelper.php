@@ -87,10 +87,10 @@ $gridOutput = rtrim($gridOutput, ',');
 $gridOutput.= ']';
 
 try{
-	$file = new fFile(MY_ROOT . '/feeds/gridFusionSmall.json');
+	$file = new fFile(MY_ROOT . '/feeds/gridFusion.json');
 	$file->write($gridOutput);
 }catch (fExpectedException $e) {
-	$new_file = fFile::create(MY_ROOT . '/feeds/gridFusionSmall.json', $gridOutput);
+	$new_file = fFile::create(MY_ROOT . '/feeds/gridFusion.json', $gridOutput);
 }catch (fEnvironmentException $e) {
 	print_r($e);	
 }
