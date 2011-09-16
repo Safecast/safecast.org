@@ -28,13 +28,23 @@ $driveId = fRequest::get('id',"integer" );
 ?>
 
 <div class="content">
+	<div class="sectionHeadRight"></div>
+	<div class="wideBoxContent">
+	<p><div class="driveLocations"></div>
+	<div class="drivers"></div>	
+	</p></div>
 	<div class="relativeWrap">
 		<div class="twoColumnWidth">
 			<div id="map_canvas"></div>
 			<div id="mapInfo">
-			<h2 class="title"><span style="font-size:10pt;font-weight:bold"></span></h2>
-			<br /><br />Latitude:<br /> Longitude:<br /><hr>
-			Reading value:<br />Derived dose rate:<br />Time of reading: <br /><br />
+			<br />
+			<br />
+			<br />
+			<hr>
+			<span id="_doseNum">Annualized dose: </span>
+			<br />
+			<hr>
+			Latitude:<br /> Longitude:<br />
 			
 			</div>
 		</div>
@@ -43,7 +53,7 @@ $driveId = fRequest::get('id',"integer" );
 
 <div class="hiddenDiv">
 	<div id="mapLegend">
-		<hr>
+			<hr>
 		<img src="images/7_black.png" /> >= 1050 CPM<br />
 		<img src="images/6_darkRed.png" /> >= 680 CPM<br />
 		<img src="images/5_red.png" /> >= 420 CPM<br />

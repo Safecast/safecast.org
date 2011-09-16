@@ -1378,6 +1378,7 @@ legend {
     top: -530px;
     left: 710px;
     min-height: 100px;
+    line-height: 18px;
     width: 220px;
     padding: 5px;
     background: white;
@@ -1416,6 +1417,7 @@ legend {
 }
 .map_canvas div{
   font-size:12px;
+	line-height: 15px;
 }
 
 .map_canvas p{
@@ -1716,12 +1718,12 @@ hr.dotted {
 	color: #444;
 }
 
-.crudWrap .drivers {
+.drivers {
     color: #515151;
     font-size: 9pt;
 }
 
-.crudWrap h3 {
+.driveLocations {
     font: bold 100%/100% Arial, sans-serif;
     color: #444;
     font-size: 10pt;
@@ -1746,4 +1748,51 @@ hr.dotted {
 
 .driveWrap {
 	background-color: #F2F2F2;
+}
+
+#info_box {
+	width: 265px;
+	position: absolute;
+	z-index: 2;
+	top: 179px; 
+	right: 5px;
+	opacity: .85;
+	border: 1px #69C solid;
+	background: white;
+}
+
+#info_under {
+	position: absolute;
+	z-index: -1;
+	visibility: hidden;
+}
+
+#info {
+	background-color: white;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-align: center;
+}
+
+#legend {
+	padding: 5px;
+	text-align: right;
+	border-top: 1px #69C solid;
+}
+
+#doseSquare {
+	height: 12px;
+	width: 12px;
+	background-color: white;
+	position: absolute;
+	border: 1px #69C solid;
+}
+
+#doseNum {
+	position: relative;
+	left: 20px;
+}
+
+#radNote {
+	font-weight: bold;
 }

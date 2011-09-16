@@ -347,6 +347,7 @@ while ($drive = $result->fetch()) {
     $jsonOutput.= '{"title": "'.$drive->route_description.'",'.
 			'"title_jp": "",'.
 			'"description": "'.$drive->drivers.'",'.
+			'"locations": "'.$drive->locations.'",'.
 			'"creator": "safecast drive",'.
 			'"mapLat": '.$drive->latitude.','.
 			'"mapLng": '.$drive->longitude.','.

@@ -44,6 +44,7 @@ RewriteRule	^contact$			contact.php			[L]
 RewriteRule	^stats$				stats.php			[L]
 RewriteRule	^feedmap$			feedMap.php			[L]
 RewriteRule	^fusion$			fusionMap.php			[L]
+RewriteRule	^fusion/([0-9]+\.[0-9]+)/([0-9]+\.[0-9]+)$			fusionMap.php?lat=$1&lon=$2			[L]
 RewriteRule	^aggregate-data/$		feedMap.php			[L]
 
 RewriteRule	^drive/add$			submitDrive_headless.php?action=add			[L]

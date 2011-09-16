@@ -244,13 +244,21 @@ $(document).ready(function()
 	            zoom: aData.mapZoom,
 	            center: new google.maps.LatLng(aData.mapLat, aData.mapLng),
 	            mapTypeId: google.maps.MapTypeId.ROADMAP,
-	            scaleControl: false,
-	            scrollwheel: true
+			zoomControl: true,
+			panControl: false,
+			scaleControl: true,
+			mapTypeControl: false,
+			streetViewControl: false,
+			    scrollwheel: true
 	          });
 	        var customMapType = new google.maps.StyledMapType(mapStyles, styledMapOptions);
+
       		this.oGMap.mapTypes.set('safecast', customMapType);
 			this.oGMap.setMapTypeId('safecast');
 	        globalMap = this.oGMap;
+	  	$(".sectionHeadRight").html(aData.title);
+	  	$(".driveLocations").html(aData.locations);
+	  	$(".drivers").html(aData.description);
           } 
           
           /**
@@ -274,8 +282,12 @@ $(document).ready(function()
 	            zoom: 6,
 	            center: new google.maps.LatLng(38.27, 140.81),
 	            mapTypeId: google.maps.MapTypeId.ROADMAP,
-	            scaleControl: false,
-	            scrollwheel: true
+			zoomControl: true,
+			panControl: false,
+			scaleControl: true,
+			mapTypeControl: false,
+			streetViewControl: false,
+		    scrollwheel: true
 	          });
           } 
 
@@ -367,7 +379,7 @@ $(document).ready(function()
     			  new google.maps.Size(11, 11),new google.maps.Point(0,0),new google.maps.Point(6, 6));
           }
 	  
-          var radiationLevel = oJson.current_value * 350;	  
+          var radiationLevel = oJson.current_value * 334;	  
 	  radiationLevel = radiationLevel.toFixed(2) + " CPM";
           var oGMarker = new google.maps.Marker(
           {
@@ -540,34 +552,45 @@ $(document).ready(function()
          //console.log("------------");
         // -------------------------------------
 
-
-        var elTitle 		= $('<h2 class="title"><span style="font-size:10pt;font-weight:bold">' + title + '</span>');
-        var elDescription  	= $('<p>').html(description);
-        var elLat		= $('<p>').html("Latitude: " + oJson.lat.toFixed(4));
-	var elLon		= $('<p>').html("Longitude: " + oJson.lon.toFixed(4));
-	    var elCurrentValue  = $('<p>').html('Reading value: ' + oJson.cpm_value + ' CPM<br />Derived dose rate: '+ oJson.current_value + ' ' + oJson.label);
+	var mDate = new Date(oJson.at);
+	//console.log("[Date]" + oJson.at);
+	var month = mDate.getMonth()+1 < 10 ? "0" + (mDate.getMonth()+1) : (mDate.getMonth()+1);
+	var elCurrentValue  = $('<p>').html("<span style=\"font-weight: bold;\">" + oJson.cpm_value + ' CPM</span> <br /><span style=\"font-weight: bold;\">'+ oJson.current_value + ' ' + oJson.label + '</span> derived dose');
 	    
 	        //var elRange      	= $('<span class="max"> / '+oJson.datastreams[0].max_value+'</span>');
-	        var elAt         	= $('<p>')
-										.html('Time of reading: ' + oJson.at
+	var elAt         	= $('<p>').html("<span style=\"font-weight: bold;\">" + mDate.getFullYear() + "/" + month + "/" + mDate.getDate() + '</span>');
 										//.replace(/^/,'計測日: ')
-										.replace(/-/g, '/')
+										//.replace(/-/g, '/')
 										//.replace('T', '計測時間: ')
-										.replace(/\.\d+\+.+?$/, ''));
+										//.replace(/\.\d+\+.+?$/, ''));
 		
-	        var elWrap 			= $('<div class="mapAnnotation" style="min-height:130px;">');
+	var mNum 		= (oJson.current_value*365*24)/1000.0;
+	var elAnnual 		= $('<p>').html("<div id=\"_doseNum\"> Annualized dose: " + mNum.toFixed(3) + " mSv</div>");
+	/*if(mNum >= 10.0) {
+		var elAnnual 	= $('<p>').html("<div id=\"doseSquare\" style=\"background-color: black;\"></div><div id=\"doseNum\"> Annual dose: " + mNum.toFixed(3) + " mSv</div>");
+		var elNote 	= $('<p>').html("<span id=\"radNote\" > Exceeds Japan's acceptable radiation standard of 20 mSv/year.</span>");
+	} else {
+		var elAnnual 	= $('<p>').html("<div id=\"doseSquare\" style=\"background-color: green;\"></div><div id=\"doseNum\"> Annual dose: " + mNum.toFixed(3) + " mSv</div>");
+		var elNote	= $('<p>').html(" Below Japan's acceptable radiation standard of 20 mSv/year."); 
+	}*/
+        var elLat		= $('<p>').html("Latitude: " + oJson.lat.toFixed(4));
+	var elLon		= $('<p>').html("Longitude: " + oJson.lon.toFixed(4));
+
+
+	var elWrap 		= $('<div class="mapAnnotation" style="min-height:130px;">');
 	        
-	        elWrap.append(elTitle);
-	        elWrap.append(elDescription);
-		elWrap.append(elLat);
-		elWrap.append(elLon);
-	        elWrap.append('<hr>');
-	        elWrap.append(elCurrentValue);
+	elWrap.append(elCurrentValue);
+	elWrap.append(elAt);
+	elWrap.append('<hr>');
+	elWrap.append(elAnnual);
+	//elWrap.append(elNote);
+	elWrap.append('<hr>');
+	elWrap.append(elLat);
+	elWrap.append(elLon);
 
-	        elWrap.append(elAt);
 
 
-		elBalloon.append(elWrap);
+	elBalloon.append(elWrap);
         sNewString = elBalloon.html();
         elBalloon = null;
         return sNewString;

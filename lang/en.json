@@ -73,7 +73,7 @@
     "sensorNetworkBody1": "This map shows the nodes for our own fixed sensor network which we've just begun implementing. As part of our longterm mission we aim to have many more of these deployed in the near future.",
     "sensorNetworkBody2": "In addition to our own network or sensors, we are aggregating radiation data from government and other sources.",
 	"aggregateButton": "Aggregate Map From All Sources",
-	"gridMapBody": "The Safecast Map depicts over 500,000 radiation data points collected by the Safecast team throughout Japan. For each square, numerous geiger readings have been collected and color-coded. For detailed maps showing all data points, please visit the ",
+	"gridMapBody": "The Safecast Map depicts over 600,000 radiation data points collected by the Safecast team throughout Japan. For each square, numerous geiger readings have been collected and color-coded. For detailed maps showing all data points, please visit the ",
 	"gridMapBodyLink": "Drive Maps page.",
 	"driveListHref": "/drives",
 	"gridMapLegend1": "Readings in square are above the average geiger counter readings prior to March 11, 2011 (35 cpm).",
