@@ -17,20 +17,31 @@ var fusion_listener	= null;
 var tables_A		= new Array("1355535", "1355910", "1355515", "1355439");
 var tables_B		= new Array("1290203", "1290203", "1289664", "1289840");
 var tables		= tables_A;
+var tables_updated	= "2011-09-04";
 var table		= tables[0];
 var geocoder		= null;
 var params		= {h: '100%', w: '100%'};
 
 function initialize_map()
 {
+	var lat = null;
+	if(!location.search.match(/\?lat=([0-9]+.[0-9]+)/)) {
+		lat = 36.94111143010772;
+		lon = 140.60302734375;
+	} else {
+		lat = location.search.match(/\?lat=([0-9]+.[0-9]+)/)[1];
+		lon = location.search.match(/\&lon=([0-9]+.[0-9]+)/)[1];
+		zoom_level = 10;
+	}
 	map = new google.maps.Map(
 		document.getElementById('fusion_canvas'),
-		{ center: new google.maps.LatLng(36.94111143010772, 140.60302734375),
+		{ center: new google.maps.LatLng(lat, lon ),
 			zoom: zoom_level,
 			zoomControl: true,
 			panControl: false,
 			scaleControl: true,
 			mapTypeControl: false,
+			streetViewControl: false,
 			scaleControlOptions: { position: google.maps.ControlPosition.TOP_CENTER },
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		});
@@ -55,9 +66,9 @@ function change_map()
 {
 	update_info(null);	// grey-out the div initially
 	zoom = map.getZoom();	// update current zoom
-	document.getElementById('info').innerHTML = '<p style="text-align: center;"><b>zoom: ' + zoom +
+	document.getElementById('info').innerHTML = '<p ><b>zoom: ' + zoom +
 		'</b><br /><br />Please click on any marker to see its reading.</p>';
-	
+	document.getElementById('dateUpdated').innerHTML = 'Dataset last updated: <b>' + tables_updated + '</b><br />'; 
 	if (fusion_layer)
 	{
 		fusion_layer.setMap(null);
@@ -101,22 +112,22 @@ function update_info(e)
 		info_div.innerHTML = e.infoWindowHtml;
 		//var DRE = e.infoWindowHtml.match(/([.0-9]+) μSv\/h/)[1];
 		var DRE = parseFloat(e.row.DRE.value);
-		if (DRE <= 0.2) 
-			{document.getElementById("info_under").style.backgroundColor='#99ff99';}
+		if (DRE <= 0.2)
+			{document.getElementById("info").style.backgroundColor='#99ff99';}
 		else if (DRE >0.2 && DRE <= 0.5)
-			{document.getElementById("info_under").style.backgroundColor='#ffff99';}
+			{document.getElementById("info").style.backgroundColor='#ffff99';}
 		else if (DRE >0.5 && DRE <= 1.0)
-			{document.getElementById("info_under").style.backgroundColor='#ff99ff';}
+			{document.getElementById("info").style.backgroundColor='#ff99ff';}
 		else if (DRE >1.0 && DRE <= 5.0)
-			{document.getElementById("info_under").style.backgroundColor='#9999ff';}
+			{document.getElementById("info").style.backgroundColor='#9999ff';}
 		else if (DRE >5.0 && DRE <= 10.0)
-			{document.getElementById("info_under").style.backgroundColor='#ff6666';}
+			{document.getElementById("info").style.backgroundColor='#ff6666';}
 		else
-			{document.getElementById("info_under").style.backgroundColor='red';}
+			{document.getElementById("info").style.backgroundColor='red';}
 	}
 	else
 	{
-		document.getElementById("info_under").style.backgroundColor='gray';
+		document.getElementById("info").style.backgroundColor='white';
 		info_div.innerHTML = '';
 	}
 }

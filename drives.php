@@ -55,9 +55,9 @@ $existingZoom = "13";
 				<table id="driveTable">
 				<thead>
 					<tr>
-						<th><br></th>
-						<th><br></th>
-						<th><br></th>
+						<th><br /></th>
+						<th><br /></th>
+						<th><br /></th>
 					</tr>
 				</thead>
 				<tbody>';
@@ -70,7 +70,7 @@ $existingZoom = "13";
 		}
 		$odd = !$odd;
 		$date = date("Y-m-d", strtotime($data->drive_date));
-		echo '<td class="driveColumn dateColumn">'.$date.'</td><td class="driveColumn"><span class="description">'.$data->route_description.'</span><br><h3>'.$data->locations.'</h3><span class="drivers">Safecasters: '.$data->drivers.'</span></td><td class="driveColumn idColumn">'.$data->drive_id.'</td></tr>';
+		echo '<td class="driveColumn dateColumn">'.$date.'</td><td class="driveColumn"><span class="description">'.$data->route_description.'</span><br /><span class="driveLocations">'.$data->locations.'</span><br /><span class="drivers">Safecasters: '.$data->drivers.'</span></td><td class="driveColumn idColumn">'.$data->drive_id.'</td></tr>';
 	}
 	echo '</tbody>
 		</table>';

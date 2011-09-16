@@ -149,15 +149,40 @@ function gm_process_grid_json(oJson) {
         //var color = (curr_square.contaminated_air == "1") ? "#000000" : ((curr_square.contaminated_air == "-1") ? "#ffffff":"#39f139");
         
         var opacity = (curr_square.contaminated_air == "1") ? 0.4 : 0.7;
-        
         var rectOptions = {
-      	strokeWeight: 0.2,
-      	strokeColor: color,
-      	fillColor: color,
-      	fillOpacity: opacity,
-      	map: gm_map,
-      	bounds: bounds
+		strokeWeight: 0.2,
+		strokeColor: color,
+		fillColor: color,
+		fillOpacity: opacity,
+		map: gm_map,
+		num: i,
+		bounds: bounds
     	};
     	rectangle.setOptions(rectOptions);
+	var infoWindow = new google.maps.InfoWindow();
+    	google.maps.event.addListener(rectangle, 'click', function() {
+		var square = oJson[this.num];
+		var lat = (parseFloat(square.topLeft.lat)+parseFloat(square.bottomRight.lat))/2;
+		var lon = (parseFloat(square.topLeft.lng)+parseFloat(square.bottomRight.lng))/2;
+		var pos = new google.maps.LatLng(lat, lon);
+		var pow = new google.maps.LatLng(parseFloat(square.bottomRight.lat), parseFloat(square.bottomRight.lng));
+		infoWindow.setPosition(pos);
+		var cont = "<div id=\"content\">" +
+		"<div class=\"topInfo\"><p ><span style=\"font-weight: bold;\">" + square.totalPoints + "</span> readings in this area." +
+		"<br /><span style=\"font-weight: bold;\">"  + square.cpmAvg.toFixed(3) + " CPM</span> average." +
+		"<br /><span style=\"font-weight: bold;\">" + (square.cpmAvg/334).toFixed(3) + " &#xB5Sv/h</span> average derived dose." + "</div>" + 
+		"<hr />" +
+		"<div class=\"bottomInfo\"style=\"margin-bottom: 15px; color: #666\">Highest reading: " + square.cpmMax + " CPM / " + (square.cpmMax / 334).toFixed(3) + " &#xB5Sv/h" +  
+		"<br />Lowest reading: " + square.cpmMin + " CPM / " + (square.cpmMin / 334).toFixed(3) + " &#xB5Sv/h";
+		if(square.timeMin == square.timeMax) {
+			cont += "<br /> Reading taken on " + square.timeMin + "</p></div>";
+		} else { 
+			cont += "<br /> Reading taken between " + square.timeMin + " and " + square.timeMax + "</p></div>";
+		}	
+		cont += "<div class=\"redButton\" ><a href=\"./fusion?lat=" + lat + "&lon=" + lon + "\">Explore these readings</a></div>" +
+		"<p></p></div>";
+		infoWindow.setContent(cont);
+		infoWindow.open(gm_map);
+	});
     }
 }

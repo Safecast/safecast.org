@@ -8,7 +8,7 @@ include '../inc/pdoDB.php';
 // ##################################################################
 
 function populatePointBased($data){
-	$seivert = $data->cpm_avg / 350;
+	$seivert = $data->cpm_avg / 334;
 	return '{"lon":'.$data->lat_avg.
 					', "lat":'.$data->lon_avg.
 					', "name": "",'.
@@ -20,7 +20,9 @@ function populatePointBased($data){
 }
 
 function populateGridBased($data){
-	return '{"topLeft":{"lat":'.$data->lat_max.', "lng":'.$data->lon_min.'},"bottomRight":{"lat":'.$data->lat_min.', "lng":'.$data->lon_max.'},"contaminated_air":'.($data->cpm_max/350).', "gridId":"0", "totalPoints":'.$data->points.', "hotPoints":'.$data->points.'},';
+	$timeMin = date("Y/m/d", strtotime($data->timestamp_min));
+	$timeMax = date("Y/m/d", strtotime($data->timestamp_max));
+	return '{"topLeft":{"lat":'.$data->lat_max.', "lng":'.$data->lon_min.'},"bottomRight":{"lat":'.$data->lat_min.', "lng":'.$data->lon_max.'},"contaminated_air":'.($data->cpm_max/334).', "gridId":"0", "totalPoints":'.$data->points.', "hotPoints":'.$data->points.', "cpmMin":'.$data->cpm_min.', "cpmMax":'.$data->cpm_max.', "cpmAvg":'.$data->cpm_avg.', "timeMin":"'.$timeMin.'", "timeMax":"'.$timeMax.'"},';
 }
 
 
