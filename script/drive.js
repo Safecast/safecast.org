@@ -251,8 +251,45 @@ $(document).ready(function()
 			streetViewControl: false,
 			    scrollwheel: true
 	          });
-	        var customMapType = new google.maps.StyledMapType(mapStyles, styledMapOptions);
 
+	        var fukushima = new google.maps.LatLng(37.425525, 141.029434);
+
+    // draw evacation area
+    var evac_area = new google.maps.Circle({
+        map: this.oGMap,
+        center: fukushima,
+        radius: 20000,
+        fillOpacity: 0,
+        strokeColor: '#999999',
+        strokeOpacity: 0.8,
+        strokeWeight: 3
+    });
+    var evac2_area = new google.maps.Circle({
+        map: this.oGMap,
+        center: fukushima,
+        radius: 30000,
+        fillOpacity: 0,
+        strokeColor: '#999999',
+        strokeOpacity: 0.5,
+        strokeWeight: 3
+    });
+    var marker = new google.maps.Marker({
+            position: fukushima,
+            animation: google.maps.Animation.DROP,
+            map: this.oGMap,
+            title: "Fukushima Daiichi Nuclear Power Plant"
+        });
+
+        marker.contentString = 'Fukushima Daiichi Nuclear Power Plant';
+	
+        google.maps.event.addListener(marker, 'click', function () {
+	        gm_infowindow.content = marker.contentString;
+            gm_infowindow.open(this.oGMap, marker);
+        });
+
+
+	        var customMapType = new google.maps.StyledMapType(mapStyles, styledMapOptions);
+			
       		this.oGMap.mapTypes.set('safecast', customMapType);
 			this.oGMap.setMapTypeId('safecast');
 	        globalMap = this.oGMap;
