@@ -9,13 +9,14 @@ include '../inc/pdoDB.php';
 
 function populateJSON($data){
 	global $jsonOutput;
+	$mDate = date("Y-m-d", strtotime($data->reading_date));
 	$jsonOutput.= '{"lon":'.$data->longitude.
 					', "lat":'.$data->latitude.
 					', "name": "",'.
 					'"current_value": "'.$data->reading_value.'",'.
 					'"cpm_value": "'.$data->alt_reading_value.'",'.
 					'"id": "'.$data->reading_id.'",'.
-					'"at": "'.$data->reading_date.'",'.
+					'"at": "'.$mDate.'",'.
 					'"label": "'.$data->unit_symbol.'"},';	
 }
 
