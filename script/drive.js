@@ -589,7 +589,7 @@ $(document).ready(function()
          //console.log("------------");
         // -------------------------------------
 
-	var mDate = new Date(oJson.at);
+	var mDate = new Date(oJson.at.substr(0, 10));
 	//console.log("[Date]" + oJson.at);
 	var month = mDate.getMonth()+1 < 10 ? "0" + (mDate.getMonth()+1) : (mDate.getMonth()+1);
 	var elCurrentValue  = $('<p>').html("<span style=\"font-weight: bold;\">" + oJson.cpm_value + ' CPM</span> <br /><span style=\"font-weight: bold;\">'+ oJson.current_value + ' ' + oJson.label + '</span> derived dose');
