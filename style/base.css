@@ -1400,6 +1400,12 @@ legend {
     min-height: 530px;
     width:705px;
 }
+#sensor_network_canvas{
+    height:530px;
+    min-height: 530px;
+    width:946px;
+}
+
 #fusion_canvas{
     height:530px;
     min-height: 530px;

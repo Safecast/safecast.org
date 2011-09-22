@@ -4,14 +4,11 @@
  */
 $(document).ready(function()
 {
-  $('#small_map_canvas').visualizeGmCounter(
+  $('#sensor_network_canvas').visualizeGmCounter(
   {
     pachubeAPI:
     [
-
             'feeds/pachubeStatic.json'
-            
-            
     ],
     xmlFeed:
     [
@@ -193,19 +190,21 @@ $(document).ready(function()
            */
           if(!this.oGMap){
           	this.oGMap = new google.maps.Map(elTarget.get(0), {
+          		zoomControl: true,
+				panControl: false,
+				scaleControl: true,
+				mapTypeControl: false,
+				streetViewControl: false,
 	            zoom: 6,
-	            center: new google.maps.LatLng(37.17, 139.21),
+	            center: new google.maps.LatLng(38.2, 139.21),
 	            mapTypeId: google.maps.MapTypeId.ROADMAP,
-	            scaleControl: false,
-	            streetViewControl: false,
-	            mapTypeControl: false,
-	            scrollwheel: true
 	          });
 	        globalMap = this.oGMap;
 	        var style = [{ featureType: 'all', elementType: 'all', stylers: [ { saturation: -69 } ]}];
 			var styledMapType = new google.maps.StyledMapType(style, { map: globalMap, name: 'Styled Map' });
 			globalMap.mapTypes.set('map-style', styledMapType);
 			globalMap.setMapTypeId('map-style');
+	        
 	        
 	        var fukushima = new google.maps.LatLng(37.425525, 141.029434);
 

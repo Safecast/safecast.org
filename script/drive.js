@@ -251,7 +251,12 @@ $(document).ready(function()
 			streetViewControl: false,
 			    scrollwheel: true
 	          });
-
+			globalMap = this.oGMap;
+	        var style = [{ featureType: 'all', elementType: 'all', stylers: [ { saturation: -69 } ]}];
+			var styledMapType = new google.maps.StyledMapType(style, { map: globalMap, name: 'Styled Map' });
+			globalMap.mapTypes.set('map-style', styledMapType);
+			globalMap.setMapTypeId('map-style');
+			
 	        var fukushima = new google.maps.LatLng(37.425525, 141.029434);
 
     // draw evacation area
@@ -288,12 +293,7 @@ $(document).ready(function()
         });
 
 
-	        var customMapType = new google.maps.StyledMapType(mapStyles, styledMapOptions);
-			
-      		this.oGMap.mapTypes.set('safecast', customMapType);
-			this.oGMap.setMapTypeId('safecast');
-	        globalMap = this.oGMap;
-	  	$(".sectionHeadRight").html(aData.title);
+	        	  	$(".sectionHeadRight").html(aData.title);
 	  	$(".driveLocations").html(aData.locations);
 	  	$(".drivers").html(aData.description);
           } 

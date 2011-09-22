@@ -206,10 +206,38 @@ $(document).ready(function()
 	            zoom: 6,
 	            center: new google.maps.LatLng(38.27, 140.81),
 	            mapTypeId: google.maps.MapTypeId.ROADMAP,
-	            scaleControl: false,
+	            zoomControl: true,
+				panControl: false,
+				scaleControl: true,
+				mapTypeControl: false,
+				streetViewControl: false,
 	            scrollwheel: true
 	          });
 	        globalMap = this.oGMap;
+	        var style = [{ featureType: 'all', elementType: 'all', stylers: [ { saturation: -69 } ]}];
+			var styledMapType = new google.maps.StyledMapType(style, { map: globalMap, name: 'Styled Map' });
+			globalMap.mapTypes.set('map-style', styledMapType);
+			globalMap.setMapTypeId('map-style');
+	        
+		    // draw evacation area
+		    var evac_area = new google.maps.Circle({
+		        map: globalMap,
+		        center: fukushima,
+		        radius: 20000,
+		        fillOpacity: 0,
+		        strokeColor: '#999999',
+		        strokeOpacity: 0.8,
+		        strokeWeight: 3
+		    });
+		    var evac2_area = new google.maps.Circle({
+		        map: globalMap,
+		        center: fukushima,
+		        radius: 30000,
+		        fillOpacity: 0,
+		        strokeColor: '#999999',
+		        strokeOpacity: 0.5,
+		        strokeWeight: 3
+		    });
           } 
           
           /**
@@ -232,7 +260,11 @@ $(document).ready(function()
 	            zoom: 6,
 	            center: new google.maps.LatLng(38.27, 140.81),
 	            mapTypeId: google.maps.MapTypeId.ROADMAP,
-	            scaleControl: false,
+	            zoomControl: true,
+				panControl: false,
+				scaleControl: true,
+				mapTypeControl: false,
+				streetViewControl: false,
 	            scrollwheel: true
 	          });
           } 
