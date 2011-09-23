@@ -36,6 +36,7 @@ $tmpl->place('header');
 				<div class="sectionHeadRight"><?php echo $translations->sensorNetworkTitle; ?></div>
 				<div class="wideBoxContent">
 				<p><?php echo $translations->sensorNetworkBody1; ?></p>
+				<p>These sensors are being deployed in partnership with KEIO University's <a href="http://scanningtheearth.org/">Scanning The Earth</a> project</p>
 				</div>
 			<div id="sensor_network_canvas" style="position: relative;"></div>
 			<div id="logo" style="position:absolute; bottom: 10px; right: 0px;">
