@@ -179,7 +179,7 @@ function gm_process_grid_json(oJson) {
 		} else { 
 			cont += "<br /> Reading taken between " + square.timeMin + " and " + square.timeMax + "</p></div>";
 		}	
-		cont += "<div class=\"redButton\" ><a href=\"./fusion?z=13&lat=" + lat + "&lon=" + lon + "\">Explore these readings</a></div>" +
+		cont += "<div class=\"redButton\" ><a href=\"http://gamma.tar.bz/maps/main/?z=13&lat=" + lat + "&lon=" + lon + "\">Explore these readings</a></div>" +
 		"<p></p></div>";
 		infoWindow.setContent(cont);
 		infoWindow.open(gm_map);
