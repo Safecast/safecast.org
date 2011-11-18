@@ -2,7 +2,8 @@
  *  実行
  *  ========================================================
  */
- 
+
+var calibrationConstant = 334; 
  
 $.extend({
   getUrlVars: function(){
@@ -351,64 +352,34 @@ $(document).ready(function()
           var oJson = aData.dataPoints[i];
           var oGLatLng = new google.maps.LatLng(oJson.lat, oJson.lon, false);
           
-          /*if(oJson.current_value >= 3.0){
-          	var image = new google.maps.MarkerImage('images/7_black.png',
-    			  new google.maps.Size(11, 11),new google.maps.Point(0,0),new google.maps.Point(6, 6));
-          }else if(oJson.current_value >= 1.8){
-          	var image = new google.maps.MarkerImage('images/6_darkRed.png',
-    			  new google.maps.Size(11, 11),new google.maps.Point(0,0),new google.maps.Point(6, 6));
-          }else if(oJson.current_value >= 1.2){
-          	var image = new google.maps.MarkerImage('images/5_red.png',
-    			  new google.maps.Size(11, 11),new google.maps.Point(0,0),new google.maps.Point(6, 6));
-          }else if(oJson.current_value >= 1.0){
-          	var image = new google.maps.MarkerImage('images/4_darkOrange.png',
-    			  new google.maps.Size(11, 11),new google.maps.Point(0,0),new google.maps.Point(6, 6));
-          }else if(oJson.current_value >= 0.8){
-          	var image = new google.maps.MarkerImage('images/3_orange.png',
-    			  new google.maps.Size(11, 11),new google.maps.Point(0,0),new google.maps.Point(6, 6));
-          }else if(oJson.current_value >= 0.5){
-          	var image = new google.maps.MarkerImage('images/2_yellow.png',
-    			  new google.maps.Size(11, 11),new google.maps.Point(0,0),new google.maps.Point(6, 6));
-          }else if(oJson.current_value >= 0.3){
-          	var image = new google.maps.MarkerImage('images/2_lightGreen.png',
-    			  new google.maps.Size(11, 11),new google.maps.Point(0,0),new google.maps.Point(6, 6));
-          }else if(oJson.current_value >= 0.2){
-          	var image = new google.maps.MarkerImage('images/1_green.png',
-    			  new google.maps.Size(11, 11),new google.maps.Point(0,0),new google.maps.Point(6, 6));
-          }else if(oJson.current_value >= 0.1){
-          	var image = new google.maps.MarkerImage('images/0_midgreen.png',
-    			  new google.maps.Size(11, 11),new google.maps.Point(0,0),new google.maps.Point(6, 6));
-          }else {
-          	var image = new google.maps.MarkerImage('images/white.png',
-    			  new google.maps.Size(11, 11),new google.maps.Point(0,0),new google.maps.Point(6, 6));
-          }*/
+          
           
 	  
-	   if(oJson.current_value >= 3.0){
+	   if(oJson.cpm_value/calibrationConstant >= 3.0){
           	var image = new google.maps.MarkerImage('images/Border/grey.png',
     			  new google.maps.Size(11, 11),new google.maps.Point(0,0),new google.maps.Point(6, 6));
-          }else if(oJson.current_value >= 1.8){
+          }else if(oJson.cpm_value/calibrationConstant >= 1.8){
           	var image = new google.maps.MarkerImage('images/Border/darkRed.png',
     			  new google.maps.Size(11, 11),new google.maps.Point(0,0),new google.maps.Point(6, 6));
-          }else if(oJson.current_value >= 1.2){
+          }else if(oJson.cpm_value/calibrationConstant >= 1.2){
           	var image = new google.maps.MarkerImage('images/Border/red.png',
     			  new google.maps.Size(11, 11),new google.maps.Point(0,0),new google.maps.Point(6, 6));
-          }else if(oJson.current_value >= 1.0){
+          }else if(oJson.cpm_value/calibrationConstant >= 1.0){
           	var image = new google.maps.MarkerImage('images/Border/darkOrange.png',
     			  new google.maps.Size(11, 11),new google.maps.Point(0,0),new google.maps.Point(6, 6));
-          }else if(oJson.current_value >= 0.8){
+          }else if(oJson.cpm_value/calibrationConstant >= 0.8){
           	var image = new google.maps.MarkerImage('images/Border/orange.png',
     			  new google.maps.Size(11, 11),new google.maps.Point(0,0),new google.maps.Point(6, 6));
-          }else if(oJson.current_value >= 0.5){
+          }else if(oJson.cpm_value/calibrationConstant >= 0.5){
           	var image = new google.maps.MarkerImage('images/Border/yellow.png',
     			  new google.maps.Size(11, 11),new google.maps.Point(0,0),new google.maps.Point(6, 6));
-          }else if(oJson.current_value >= 0.3){
+          }else if(oJson.cpm_value/calibrationConstant >= 0.3){
           	var image = new google.maps.MarkerImage('images/Border/lightGreen.png',
     			  new google.maps.Size(11, 11),new google.maps.Point(0,0),new google.maps.Point(6, 6));
-          }else if(oJson.current_value >= 0.2){
+          }else if(oJson.cpm_value/calibrationConstant >= 0.2){
           	var image = new google.maps.MarkerImage('images/Border/green.png',
     			  new google.maps.Size(11, 11),new google.maps.Point(0,0),new google.maps.Point(6, 6));
-          }else if(oJson.current_value >= 0.1){
+          }else if(oJson.cpm_value/calibrationConstant >= 0.1){
           	var image = new google.maps.MarkerImage('images/Border/midgreen.png',
     			  new google.maps.Size(11, 11),new google.maps.Point(0,0),new google.maps.Point(6, 6));
           }else {
@@ -416,8 +387,8 @@ $(document).ready(function()
     			  new google.maps.Size(11, 11),new google.maps.Point(0,0),new google.maps.Point(6, 6));
           }
 	  
-          var radiationLevel = oJson.current_value * 334;	  
-	  radiationLevel = radiationLevel.toFixed(2) + " CPM";
+          var radiationLevel = oJson.cpm_value;	  
+	  radiationLevel = radiationLevel + " CPM";
           var oGMarker = new google.maps.Marker(
           {
             position: oGLatLng,
@@ -592,7 +563,7 @@ $(document).ready(function()
 	var mDate = new Date(oJson.at.substr(0, 10));
 	//console.log("[Date]" + oJson.at);
 	var month = mDate.getMonth()+1 < 10 ? "0" + (mDate.getMonth()+1) : (mDate.getMonth()+1);
-	var elCurrentValue  = $('<p>').html("<span style=\"font-weight: bold;\">" + oJson.cpm_value + ' CPM</span> <br /><span style=\"font-weight: bold;\">'+ oJson.current_value + ' ' + oJson.label + '</span> derived dose');
+	var elCurrentValue  = $('<p>').html("<span style=\"font-weight: bold;\">" + oJson.cpm_value + ' CPM</span> <br /><span style=\"font-weight: bold;\">'+ (oJson.cpm_value/calibrationConstant).toFixed(3) + ' ' + oJson.label + '</span> derived dose');
 	    
 	        //var elRange      	= $('<span class="max"> / '+oJson.datastreams[0].max_value+'</span>');
 	var elAt         	= $('<p>').html("<span style=\"font-weight: bold;\">" + mDate.getFullYear() + "/" + month + "/" + mDate.getDate() + '</span>');
@@ -601,7 +572,7 @@ $(document).ready(function()
 										//.replace('T', '計測時間: ')
 										//.replace(/\.\d+\+.+?$/, ''));
 		
-	var mNum 		= (oJson.current_value*365*24)/1000.0;
+	var mNum 		= ((oJson.cpm_value/calibrationConstant)*365*24)/1000.0;
 	var elAnnual 		= $('<p>').html("<div id=\"_doseNum\"> Annualized dose: " + mNum.toFixed(3) + " mSv</div>");
 	/*if(mNum >= 10.0) {
 		var elAnnual 	= $('<p>').html("<div id=\"doseSquare\" style=\"background-color: black;\"></div><div id=\"doseNum\"> Annual dose: " + mNum.toFixed(3) + " mSv</div>");
