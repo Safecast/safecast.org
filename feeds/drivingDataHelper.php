@@ -56,7 +56,7 @@ function parseData($filename) {
 			$datetime = $columns[2];
 			//$timestamp = new fTimestamp($columns[2]);
 			$CPM = (integer)$columns[3];
-			$sieverts = round($CPM/350, 3);
+			$sieverts = round($CPM/334, 3);
 			$rollingCount = (integer)$columns[4];
 			$totalCount = (integer)$columns[5];
 			$funkyLat = (float)$columns[7];
@@ -107,7 +107,7 @@ function parseData($filename) {
 			//$timestamp = new fTimestamp($datetime);
 			
 			$CPM = (float)$columns[2];
-			$sieverts = round($CPM/350, 3);
+			$sieverts = round($CPM/334, 3);
 			
 			$funkyLat = (float)$columns[3];
 			$degrees = floor($funkyLat/100);
